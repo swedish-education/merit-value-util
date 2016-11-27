@@ -1,5 +1,6 @@
 module.exports.uppersecondary = {
-  grading: require("./lib/grading.js")
+  grading: require("./lib/grading.js"),
+  merit: require("./lib/uppersecondary/merit.js")
 };
 
 module.exports.compulsory = {

@@ -1,4 +1,6 @@
 const assert = require("chai").assert;
+require("./uppersecondary/merit.js");
+
 describe("grading", function() {
   const grading = require("../lib.js").grading;
   describe("api", function() {
@@ -9,7 +11,7 @@ describe("grading", function() {
       assert.deepEqual(require("../lib.js").compulsory.grading, grading);
     });
   });
-  
+
   describe("calculateGrade(knowledgeRequirementGrades)", function() {
     /*
       Keys are the input (will split into an array of grades)
@@ -29,6 +31,7 @@ describe("grading", function() {
       "EEEEE": "En",
       "EEEE": "En",
       "EEE": "En",
+
       /*
       When it's presumed that C is the result but there's a possibility for B
       */
@@ -41,6 +44,7 @@ describe("grading", function() {
       "ACCC": "CB",
       "AAC": "CB",
       "ACC": "CB",
+
       /*
       When it's presumed that E is the result but there's a possibility for D or higher
       */
@@ -72,6 +76,7 @@ describe("grading", function() {
       "AEE": "ED",
       "AAE": "ED",
       "CCE": "ED",
+
       /*
       The cases when F is the result
       */
@@ -86,13 +91,17 @@ describe("grading", function() {
       "EFF": "Fn",
       "FFF": "Fn"
     };
+
     for(let inputGrades in tests) {
       let outputGrades = tests[inputGrades];
+
       let inputGradesArray = inputGrades.split("");
       let expectedGuaranteed = outputGrades.slice(0, 1);
       let expectedPossible = outputGrades.slice(1, 2);
+
       if(expectedGuaranteed === "n") expectedGuaranteed = false;
       if(expectedPossible === "n") expectedPossible = false;
+
       it(`should grade ${inputGradesArray} with guaranteed '${expectedGuaranteed}' and possible '${expectedPossible || "false"}'`, function() {
         let result = grading.calculateGrade(inputGradesArray);
         
