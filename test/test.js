@@ -98,9 +98,9 @@ describe("grading", function() {
     for(let inputGrades in tests) {
       let outputGrades = tests[inputGrades];
 
-      let inputGradesArray = inputGrades.split();
+      let inputGradesArray = inputGrades.split("");
       let expectedGuaranteed = outputGrades.slice(0, 1);
-      let expectedPossible = outputGrades.slice(1, 1);
+      let expectedPossible = outputGrades.slice(1, 2);
 
       if(expectedGuaranteed === "n") expectedGuaranteed = false;
       if(expectedPossible === "n") expectedPossible = false;
