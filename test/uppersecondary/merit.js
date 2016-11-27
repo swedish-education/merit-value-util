@@ -1,7 +1,31 @@
 const assert = require("chai").assert;
 
 describe("uppersecondary.merit", function() {
-  const grading = require("../../lib.js").uppersecondary.merit;
+  const merit = require("../../lib.js").uppersecondary.merit;
+
+  describe("getSubjectLevelsOfStudy(courseMappings, passedCoursesSet, specialRequirementsSet)", function() {
+    it("should return properly", function() {
+      for(let type in merit.Courses) {
+        if(!merit.Courses.hasOwnProperty(type)) continue;
+
+        let currentCourses = new Set();
+        let currentLevels = new Set();
+        for(let code in merit.Courses[type]) {
+          if(!merit.Courses[type].hasOwnProperty(code)) continue;
+          currentCourses.add(code);
+          
+          let currentRequirements = new Set();
+          for(let code in merit.Courses[type]) {
+            if(!merit.Courses[type].hasOwnProperty(code)) continue;
+            currentRequirements.add(code);
+          
+            let [levels, requirementLevel] = merit.getSubjectLevelsOfStudy(merit.Courses[type], currentCourses, currentRequirements);
+            assert.equal(requirementLevel, merit.Courses[type][code]);
+          }
+        }
+      }
+    });
+  });
 
   describe("getMeritPoints(passedCourses, specialRequirements)", function() {
     const testCases = [
@@ -47,27 +71,27 @@ describe("uppersecondary.merit", function() {
     describe("exceptions", function() {
       it(`should fail if not passed iterables`, function() {
         assert.throws(function() {
-          grading.getMeritPoints(2, ["iterable"])
+          merit.getMeritPoints(2, ["iterable"])
         });
         assert.throws(function() {
-          grading.getMeritPoints(["iterable"], 3)
+          merit.getMeritPoints(["iterable"], 3)
         });
         assert.throws(function() {
-          grading.getMeritPoints(false, false)
+          merit.getMeritPoints(false, false)
         });
       });
       it(`should not fail if passed iterables`, function() {
         assert.doesNotThrow(function() {
-          grading.getMeritPoints(["iterable"], new Set());
+          merit.getMeritPoints(["iterable"], new Set());
         });
         assert.doesNotThrow(function() {
-          grading.getMeritPoints(new Map(), "iterable string");
+          merit.getMeritPoints(new Map(), "iterable string");
         });
       });
     })
     it(`should return expected values`, function() {
       for(let testCase of testCases) {
-        let result = grading.getMeritPoints(testCase.passed, testCase.requirements);
+        let result = merit.getMeritPoints(testCase.passed, testCase.requirements);
 
         assert.equal(result, testCase.expected, `passed courses ${testCase.passed}, requirements ${testCase.requirements}`);
       }
