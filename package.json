@@ -1,0 +1,23 @@
+{
+  "name": "merit-value-util",
+  "version": "1.0.0",
+  "description": "Swedish school system grade point calculation library",
+  "main": "lib.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swedish-education/merit-value-util.git"
+  },
+  "author": "eweilow & krisgun",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/swedish-education/merit-value-util/issues"
+  },
+  "homepage": "https://github.com/swedish-education/merit-value-util#readme",
+  "private": true,
+  "devDependencies": {
+    "chai": "^3.5.0"
+  }
+}
