@@ -2,9 +2,11 @@ language: node_js
 node_js:
 - stable
 before_script:
-- npm install -g mocha
+- npm i -g mocha
+- npm i -g jshint
 - npm i
 script:
+- eslint ./
 - mocha
 notifications:
   email: false
