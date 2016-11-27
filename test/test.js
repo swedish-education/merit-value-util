@@ -1,5 +1,7 @@
 const assert = require("chai").assert;
 
+require("./uppersecondary/merit.js");
+
 describe("grading", function() {
   const grading = require("../lib.js").grading;
 
