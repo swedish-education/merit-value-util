@@ -1,0 +1,19 @@
+#ABC = guaranteed/possible
+
+AAF = F/F
+CCF = F/F
+EEF = F/F
+ACF = F/F
+EAF = F/F
+
+AAA = A/A
+CCC = C/C
+EEE = E/E
+
+AAE = D/C
+CCE = D/C
+ACE = D/C
+
+ACC = C/B
+
+AAC = B/B
