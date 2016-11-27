@@ -3,7 +3,7 @@ node_js:
 - stable
 before_script:
 - npm i -g mocha
-- npm i -g jshint
+- npm i -g eslint
 - npm i
 script:
 - eslint ./
